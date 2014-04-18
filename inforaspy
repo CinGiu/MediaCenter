@@ -3,11 +3,11 @@
 ############ Parametri da impostare ############
 user="pi"
 tempmax="55"
-mittente="raspberry.mediacenter@gmail.com"
-dest="daniele.baschieri@gmail.com"
+mittente=""
+dest=""
 smtp="smtp.gmail.com"
-username="raspberry.mediacenter"
-pass="notify.me"
+username=""
+pass=""
 ############ Fine Parametri ############
 
 ip_old="`tail /home/$user/.inforaspy`"
@@ -21,7 +21,7 @@ if [ "$ip_old" != "$ip_now" ]; then
 fi
 if [ "$temp" -ge "$tempmax" ]; then
  titolotemp="Allarme temperatura raspberry!"
- tempresult="Occhio! Il raspberry ha superato la soglia di temperatura di controllo! Ora è a $temp gradi."
+ tempresult="Occhio! Il raspberry ha superato la soglia di temperatura di controllo! Ora ï¿½ a $temp gradi."
  sendEmail -f $mittente -t $dest -u $titolotemp -s $smtp -xu $username -xp $pass -m $tempresult
 fi
 lista_old=$(<lista.txt) 
