@@ -1,0 +1,58 @@
+#inputDialog{
+	display:none;
+	width:700px;
+	min-width:500px;
+	height:auto;
+}
+#topInfo{
+	width:100%;
+	height:auto;
+	clear:both;
+	float:left;
+}
+#btInfo{
+	width:100%;
+	height:auto;
+	clear:both;
+	float:left;
+}
+.flInfo{
+	width:50%;
+	float:left;
+}
+.nomiInfo{
+	float:left;
+	width:45%;
+}
+.valoriInfo{
+	float:left;
+	width:55%;
+}
+.copertina{
+	max-width:50%;
+	max-height:100%;
+}
+#actors{
+	editable:false;
+}
+#plot{
+	width:100%;
+	disabled:disabled;
+}
+.bmore{
+	position:relative;
+	float:left;
+	font-size:25px;
+	max-width:30px;
+	max-height:30px;
+	cursor:pointer;	
+}
+.bmore img{
+	position:relative;
+	float:left;
+	max-width:30px;
+	max-height:30px;
+}
+.bmore:hover{
+	top:-5px;
+}

@@ -1,0 +1,118 @@
+ 
+ <script>
+    $(function() {
+        $( "#radio" ).buttonset();
+    });
+    $("#info").hide();
+    var t=$("#info").text();
+    //var ip_server=t.substring(t.indexOf(":")+1,t.indexOf("IPv4 only Test"));
+    
+    var ip_server= document.location.href;
+    ip_server=ip_server.substring(0,ip_server.lastIndexOf("/"));
+		$("#transmission").attr("src",ip_server+":"+tranmissionPort+"/transmission/web/");
+	
+</script>
+<div id="main">
+	<h1>Welcome On JARVIS</h1> 
+	<div id="torrent" class="square">
+		<h2>Torrent</h2> 
+			<iframe id="transmission" src=""></iframe> 
+	</div>
+	<div id="chart_div" class="square"> 
+		<h2>Server STAT</h2>
+		<div id="info_server_sx"></div>
+		<div id="info_server_dx"></div>
+	</div>
+	<div id="film" class="square" >
+		
+		<h2>Film</h2>
+		<div class="autocompl">
+			<label for="list_film_autoc">Cerca Il Film: </label>
+			<input id="list_film_autoc" />
+			<input type="button" value="Cerca" onclick="SearchFilm()"/>
+		</div>
+
+		<div id="Search_Result">
+		</div>
+		<form>
+			<div id="radio">
+				<input type="radio" id="radio1" onClick="TakeFilmList('AVI')" name="radio" /><label for="radio1">SD</label>
+				<input type="radio" id="radio2" onClick="TakeFilmList('MKV')" name="radio" /><label for="radio2">HD</label>
+				<input type="radio" id="radio3" onClick="TakeFilmList('SERIE')" name="radio" /><label for="radio3">SERIE</label>
+				<input type="radio" id="radio4" onClick="TakeFilmList('TORRENT')" name="radio" /><label for="radio4">NUOVI</label>
+				<input type="radio" id="radio5" onClick="TakeFilmList('originalTorrent')" name="radio" /><label for="radio5">TORRENT</label>
+				
+			</div>
+		</form>
+			<div id="sx_film" class="split">
+				<ul id="film1">
+						
+				</ul>
+			</div>
+			<div id="dx_film" class="split">
+				<ul id="film2">
+						
+				</ul>
+			</div>
+		
+	</div>
+</div>
+<div id="inputDialog">
+	<div id="topInfo">
+		<div class="flInfo">
+			<img src="" class="copertina" id="copertina" title="copertina" />
+		</div>
+		<div class="flInfo">
+			
+			<table>
+				<tr>
+					<td>Nome</td>
+					<td id="title"></td>
+				</tr>
+				<tr>
+					<td>Anno</td>
+					<td id="year"></td>
+				</tr>
+				<tr>
+					<td>Voto</td>
+					<td id="rating"></td>
+				</tr>
+				<tr>
+					<td>Durata</td>
+					<td id="runtime"></td>
+				</tr>
+				<tr>
+					<td>Genere</td>
+					<td id="genres"></td>
+				</tr>
+				<tr>
+					<td>Regista</td>
+					<td id="directors"></td>
+				</tr>
+				<tr>
+					<td>Sceneggiatore</td>
+					<td id="writers"></td>
+				</tr>
+				<tr>
+					<td>Attori</td>
+					<td><textarea id="actors" readonly>Attori</textarea></td>
+				</tr>
+			</table>			
+		</div>
+	</div>
+	<div class="btInfo">
+		<textarea id="plot" readonly>
+		</textarea>
+	</div>
+	<div class="btInfo">
+		<a href="http://www.google.it/search?q='+encodeURI(nome)+'" class="bmore" id="cerca"	title="Cerca"    target="_blank"><img src="css/DecorateMeImg/search.png" /></a>
+		<a href="" 													class="bmore" id="youtube"	title="youtube"  target="_blank"><img src="css/DecorateMeImg/youtube.png" /></a>
+		<a href="" onclick="return fbs_click()"                 	class="bmore" id="facebook"	title="facebook" target="_blank"><img src="css/DecorateMeImg/facebook.png" /></a>
+		<a href="" 													class="bmore" id="twitter"	title="twitter"  target="_blank"><img src="css/DecorateMeImg/twitter.png" /></a>
+		<a onClick=""  												class="bmore" id="rinomina"	title="rinomina" target="_blank"><img src="css/DecorateMeImg/modifica.png" /></a>
+		<a onClick=""  												class="bmore" id="sposta"	title="sposta"   target="_blank"><img src="css/DecorateMeImg/sposta.png" /></a>
+		<a onClick="" 												class="bmore" id="elimina"	title="Elimina"  target="_blank"><img src="css/DecorateMeImg/elimina.png" /></a> 
+	</div>
+</div>
+<div id="editDialog">
+</div>

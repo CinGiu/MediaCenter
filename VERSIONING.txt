@@ -1,0 +1,196 @@
+07/01/2013
+Comincia l'avventura!
+Tutti i file aggiunti il prodotto è stabile
+DangerBlack
+--------------------------------------------
+07/01/2013 23:32
+Ho aggiornato i seguenti file
+php/ReadFile.php
+php/login.php
+js/funzioni.js
+js/cookies.js
+
+Gli aggiornamenti abilitano il funzionamento dei cookies.
+nome= danger
+password =black
+per modificare questi valodi cambiare i valori in login.php
+
+aggiunto il file 
+js/settings.js
+file ancora inerte ma che potrebbe serivere a parametrizzare l'intero progetto
+=) non vorrei che il mio si chiamasse jarvis =)
+--------------------------------------------
+08/01/2013 09:55
+Ho aggiornato i seguenti file
+js/funzioni.js
+
+il login con l'invio usava la funzione sbagliata bugfixed.
+Ho in mente di modularizzare le componenti, fare un file .js per il login
+e un file .js con le altre istruzioni per evitare l'accorpamento di funzionalità
+diverse sotto un nome così generico ;) che te ne pare?
+----------------------------------------------
+10/01/2013 17:01
+
+aggiunto file auto_installer.sh per l'installazione rapida.
+	-installa apache (TODO settare i permessi della cartella)
+	-copia i file e cartelle (TODO settare i permessi dei file/cartelle)
+	-chiede se modificare il file pr l'autorun dei nowplaying
+	-chiede se installare transmission (in un futuro magari anche amule)
+----------------------------------------------
+10/01/2013
+modificati i file
+js/funzioni.js
+
+home.html
+
+home.html deduce da solo l'ip della macchina server e ti fornisce autonomamente 
+la pagina di transmission designata.
+
+funzioni.js ho corretto la ricerca automatica ora oltre ad essere attivo l'invio
+per immettere una ricerca è anche in grado di trovare fin da subito i film e caricarli
+immediatamente, senza premere HD una prima volta.
+
+
+AGGIUNTO FILE inforaspi bisogna metterlo nella cartella
+/usr/bin
+sudo crontab -e 
+incollarci
+*/10 * * * * inforaspy 
+
+maggiori istruzioni qui :)
+http://rpy-italia.org/forum/index.php?topic=153.0
+Se ti piace puoi inserirlo pure tu io mi ci trovo troppo bene,
+appena arriva un film ricevo subito una mail ;)
+o quando cambia il mio ip domestico puoi cambiare solo la email destinazione
+e lasciare quella mail di google fatta apposta per notificare :)
+
+DangerBlack
+-----------------------------------------------
+11/01/2013 23:32
+modificati i file 
+js/funzioni.js
+
+aggiunto un filtro per i titoli dei film presentati,
+rimossi contenuti fastidiosi come 1080p 720p Ita BDRip etc...
+
+migliora la funzione di ricerca ora anche introducendo un termine parziale
+e premendo invio si ottiene comunque il risultato (senza usare l'autocompletamento)
+
+DangerBlack
+-----------------------------------------------	
+12/21/2013 15:41
+modificati i file
+auto_installer.sh
+
+aggiunto il processo di richiesta della cartella film
+aggiunto il processo di installazione apache e transmission
+-----------------------------------------------
+13/01/2013 16:28
+Modifiati i file
+js/DecorateMe1.0.js
+js/funzioni.js
+
+Aggiunto il caricamento dinamico degli sfondi e il suddeddo
+salvataggio in locale in modo da sgravare dopo la prima connessione
+del caricamento.
+
+Corretto il bug "more" della search. ^^
+Corretto bug titoli Fra Ita Eng Spa => FraEng
+ora rimuove tutto ;)
+DangerBlack
+-----------------------------------------------
+14/01/2013
+js/DecorateMe1.0.js
+
+Corretto il caricamento dinamico degli sfondi
+ora anche le immagini bloccate (errore 403)
+vengono evitate e viene selezionata la prima immagine
+libera.
+
+DangerBlack
+------------------------------------------------
+16/01/2013 1:00
+auto_installer.sh
+settings.sh
+
+Finita la configurazione di transmission.
+copiato il contenuto del pacchetto in /var/www, nel caso sian già presenti file allora in /var/www/MediaCenter
+linkate tutte le cartelle dei film in /var/www
+
+Giulio
+-------------------------------------------------
+17/01/2012  0:25
+auto_installer.sh
+mediacenter.tar
+
+aggiunto archivio con tutto per l'installazione
+primo test dell'installer con scarsi risultati: viene copiato bene tutto in /var/www ma non riesco a prendermi i permessi per scrivere nella cartella dei film. non mipermertte di cambiare il proprioetario di una cartella montata su hdd..mi odia.
+apache e transmission isntallati tranquillamente
+
+BUG TO FIX: permessi, testare meglio.
+----------------------------------------------------
+17/01/2013
+Ho cambiato troppa roba
+modifiche all index.html
+e al home.html
+
+modifiche al js
+funzioni.js
+login.js
+DecorateMe.js
+
+modifiche al php
+fileManager.php
+login.php
+
+
+In questa versione ho aggiunto:
+Quando clicchi su un film compare un menu con vari strumenti
+cerca su google
+vedi il video youtube
+condividi su facebook
+condifividi su twitter
+modifica il nome del film (e spostalo se vuoi)
+TODO cancella il film
+
+Ho introdotto un livello di sicurezza basato su sha1
+ora la password non passa più in chiaro sulla rete ma viene
+compressa con sha1 così almeno non è in chiaro.
+
+Dangerblack
+--------------------------------------------------
+19/01/2013
+
+js/DecorateMe.js
+php/fileManager.php
+
+Inserito l'eliminazione dei file
+-------------------------------------------------
+28/01/1013
+
+js/funzioni.js
+js/login.js
+js/decorateme.js
+php/fileManager.php
+css/style.css
+home.html
+index.html
+
+modificati i file per inserimento statistiche server al posto
+di NowPlaying.
+	-aggiunta percentuale spazio libero spazio occupato (con grafico)
+	-aggiunto uptime
+	-aggiunto utenti
+	-aggiunte percentuali carico cpu
+	-eliminato (momentaneamente) il nowplaying
+
+-------------------------------------------------
+08/08/2013
+php/fileManager.php
+
+modificato controllo temperatura con
+
+$cpu_temp = exec('cat /sys/class/thermal/thermal_zone0/temp');
+$cpu_temp = round($cpu_temp/1000,1);
+
+-------------------------------------------------
