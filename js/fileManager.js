@@ -9,7 +9,7 @@ function fileManager(nome,ordine,param,callBack){
 	$.ajax({
             type:"POST",
             data:{"command":ordine,"src":nome,"dst":param},
-            url:"../php/fileManager.php",
+            url:"php/fileManager.php",
             success: function(x){
 						
 						callBack(x);

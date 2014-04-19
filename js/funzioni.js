@@ -126,7 +126,7 @@ function TakeFilmList(type){
 	$.ajax({
             type:"POST",
             data:"type="+type,
-            url:"../php/ReadFile.php",
+            url:"php/ReadFile.php",
             success: function(x){
             				var film =JSON.parse(x);
             				$("#film1").html("");
