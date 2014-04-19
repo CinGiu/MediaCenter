@@ -8,8 +8,8 @@
     //var ip_server=t.substring(t.indexOf(":")+1,t.indexOf("IPv4 only Test"));
     
     var ip_server= document.location.href;
-    ip_server=ip_server.substring(0,ip_server.lastIndexOf("/"));
-		$("#transmission").attr("src",ip_server+":"+tranmissionPort+"/transmission/web/");
+    ip_server=ip_server.split('/')[2];
+		$("#transmission").attr("src","http://"+ip_server+":"+tranmissionPort+"/transmission/web/");
 	
 </script>
 <div id="main">
