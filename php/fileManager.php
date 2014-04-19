@@ -49,9 +49,9 @@
 							"users"=>$users,
 							"cpu_temp"=>$cpu_temp,
 							"web_connected"=>$web_connected,
-							"load_1_minute"=>$load_1_minute, 
-							"load_5_minutes"=>$load_5_minutes,
-							"load_15_minutes"=>$load_15_minutes);
+							"load_1_minute"=>floor($load_1_minute*100)/100, 
+							"load_5_minutes"=>floor($load_5_minutes*100)/100,
+							"load_15_minutes"=>floor($load_15_minutes*100)/100;
          $jresult= json_encode($jresult);
 		 echo $jresult;
 		 
