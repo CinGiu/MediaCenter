@@ -1,15 +1,12 @@
  
  <script>
-    $(function() {
-        $( "#radio" ).buttonset();
-    });
     $("#info").hide();
     var t=$("#info").text();
     //var ip_server=t.substring(t.indexOf(":")+1,t.indexOf("IPv4 only Test"));
     
     var ip_server= document.location.href;
-    ip_server=ip_server.substring(0,ip_server.lastIndexOf("/"));
-		$("#transmission").attr("src",ip_server+":"+tranmissionPort+"/transmission/web/");
+    ip_server=ip_server.split('/')[2];
+		$("#transmission").attr("src","http://"+ip_server+":"+tranmissionPort+"/transmission/web/");
 	
 </script>
 <div id="main">
@@ -36,12 +33,16 @@
 		</div>
 		<form>
 			<div id="radio">
-				<input type="radio" id="radio1" onClick="TakeFilmList('AVI')" name="radio" /><label for="radio1">SD</label>
-				<input type="radio" id="radio2" onClick="TakeFilmList('MKV')" name="radio" /><label for="radio2">HD</label>
-				<input type="radio" id="radio3" onClick="TakeFilmList('SERIE')" name="radio" /><label for="radio3">SERIE</label>
-				<input type="radio" id="radio4" onClick="TakeFilmList('TORRENT')" name="radio" /><label for="radio4">NUOVI</label>
-				<input type="radio" id="radio5" onClick="TakeFilmList('originalTorrent')" name="radio" /><label for="radio5">TORRENT</label>
-				
+				<script>
+					$(document).ready(function(){
+						for(var i=0;i<folderName.length;i++){
+							$("#radio").append('<input type="radio" id="radio'+(i+1)+'" onClick="TakeFilmList(\''+folderPath[i]+'\')" name="radio" /><label for="radio'+(i+1)+'">'+folderName[i]+'</label>');
+						}
+						$(function() {
+							$( "#radio" ).buttonset();
+						});
+					});
+				</script>
 			</div>
 		</form>
 			<div id="sx_film" class="split">

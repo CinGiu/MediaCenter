@@ -288,13 +288,13 @@ function showMoveDialogA(nome){
 	$("#editDialog").append('<p>The file chosen is '+pnome+'</p><p>In the folder '+pfolder+' </p><p>In the bottom folder '+folder+'</p><form>'+
 '  <fieldset>'+
 '    <select id="cartella">'+
-	'    <option>AVI</option>'+
-	'    <option>MKV</option>'+
-	'    <option>SERIE</option>'+
-	'    <option>TORRENT</option>'+
 ' 	 </select>'+
 '  </fieldset>'+
 '  </form>');
+
+	for(var i=0;i<folderPath.length;i++){
+		$("#cartella").append('<option>'+folderPath[i]+'</option>');
+	}
 	$( "#editDialog" ).dialog({
       autoOpen: false,
       height: 400,

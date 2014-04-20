@@ -1,4 +1,5 @@
 <?php
+	include("settings.php");
 	$utente=$_POST["user"];
 	$password=$_POST["pass"];
 	$req=$_POST["req"];
@@ -29,9 +30,10 @@
 		return checkLogin($utente,$password);
 	}
 	function checkLogin($utente,$password){
-		$u="cinelli";//valori di username validi
-	      //$p="fbe3d4672dfc3dcd3cda39780000e58f5c1098f9"; valori di password validi
-		$p="061f15dee189706589c74ae7fca1916125844afb";
+		//$u="danger";
+		//$p="fbe3d4672dfc3dcd3cda39780000e58f5c1098f9";
+		$u=getName();
+		$p=getPassword();
 		if(($utente==$u)&&($password==$p))
 		{
 			return true;

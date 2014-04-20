@@ -78,12 +78,12 @@ function DrawChart(x){
 	  
 	  $("#info_server_dx").append("<p><b>CPU Temp:</b> "+info[0].cpu_temp+"</p>");
 	  var load_1_minute=info[0].load_1_minute.replace("load average:",""); 
-	  $("#info_server_dx").append("<p><b>Load CPU last minute:</b> "+parseFloat(load_1_minute)*100+"%</p>");
-	  $("#info_server_dx").append("<p><b>Load CPU last 5 minutes:</b> "+parseFloat(info[0].load_5_minutes)*100+"%</p>");
+	  $("#info_server_dx").append("<p><b>Load CPU last minute:</b> "+parseInt(load_1_minute*10000)/100+"%</p>");
+	  $("#info_server_dx").append("<p><b>Load CPU last 5 minutes:</b> "+parseInt(info[0].load_5_minutes*10000)/100+"%</p>");
 	  if((parseFloat(info[0].load_15_minutes)*100)>70){
-		$("#info_server_dx").append("<p><b>Load CPU last 15 minutes:</b> <blink>"+parseFloat(info[0].load_15_minutes)*100+"%<blink></p>");
+		$("#info_server_dx").append("<p><b>Load CPU last 15 minutes:</b> <blink>"+parseInt(info[0].load_15_minutes*10000)/100+"%<blink></p>");
 	  }else{
-		$("#info_server_dx").append("<p><b>Load CPU last 15 minutes:</b> "+parseFloat(info[0].load_15_minutes)*100+"%</p>");
+		$("#info_server_dx").append("<p><b>Load CPU last 15 minutes:</b> "+parseInt(info[0].load_15_minutes*10000)/100+"%</p>");
 	  }
 	  
 	  $("#info_server_dx").append("<hr/>");
@@ -126,7 +126,7 @@ function TakeFilmList(type){
 	$.ajax({
             type:"POST",
             data:"type="+type,
-            url:"../php/ReadFile.php",
+            url:"php/ReadFile.php",
             success: function(x){
             				var film =JSON.parse(x);
             				$("#film1").html("");
@@ -174,7 +174,7 @@ function generateTitle(titolo){
     titolo=titolo.replace(/HDTV/gi,"");
     titolo=titolo.replace(/HDTS/gi,"");
     titolo=titolo.replace(/CAM/g,"");
-    titolo=titolo.replace(/LD/gi,"");
+    titolo=titolo.replace(/ LD /gi,"");
     titolo=titolo.replace(/XviD/gi,"");
     titolo=titolo.replace(/BmA/gi,"");
     titolo=titolo.replace(/OAV/g,"");
