@@ -24,7 +24,8 @@ function fileManager(nome,ordine,param,callBack){
  * @param x useless param xD only for joking!
  * */
 function aggiornaSchermata(x){
-	document.location.reload(true);
+	//document.location.reload(true);
+	UpdateFilmList();
 }
 /**
  * This function call the ajax method fileManager with the opportune 
