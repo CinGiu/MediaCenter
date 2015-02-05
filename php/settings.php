@@ -1,8 +1,8 @@
 <?php
 	function getName(){
-		return "nome";
+		return "cinelli";
 	}
 	function getPassword(){
-		return "md5password";
+		return "061f15dee189706589c74ae7fca1916125844afb";
 	}
 ?>

@@ -16,18 +16,7 @@ $(document).ready(function(){
 					}
 			});	
 			
-     $("#quick_tips").click(function(){
-		 
-		 if($(this).css("height")>"400px"){
-			$(this).css("height", "400px");
-	
-		}else{
-			$(this).css("height", "100%");
-			};
-		 });
-     $("#service_status").click(function(){
-			
-		 });
+     
      $("#torrent").click(function(){
 			//window.open ('http://2.234.107.17:4545','_self',false);
 			if($(this).css("height")>"400px"){
@@ -123,6 +112,7 @@ function LoadHome(){
 }
 
 function TakeFilmList(type){
+
 	$.ajax({
             type:"POST",
             data:"type="+type,
@@ -130,7 +120,12 @@ function TakeFilmList(type){
             success: function(x){
             				var film =JSON.parse(x);
             				$("#film1").html("");
-            				$("#film2").html("");
+            				if(type == "serie"){
+								type = "SERIE";
+							}else{
+								type = "TORRENT";
+							}
+							$(".list-group").html("");
             				film_parser(film, type);
             				setCookie("CinelliHomePage", type, 30);
 							},
@@ -140,27 +135,15 @@ function TakeFilmList(type){
 function film_parser(film, type){
 	var middle=Math.floor(film.length/2);
 	var arrayfilm = [];
-	for(i=0;i< middle;i++){
+	for(i=0;i< film.length;i++){
 		var titolo = film[i].href;
 		titolo=generateTitle(titolo);
 		var titleID = generateTitleID(titolo);
 		var link = film[i].href.replace(/'/gi,"&#39;");
-			$("#film1").append("<li class='listfilm'><a id='"+titleID+"' href='/FILM/"+type+"/"+link+"'>"+titolo+"</a><div class='tool'></div></li>");
+			$(".list-group").append("<li class='list-group-item list-group-item-info'><a id='"+titleID+"' href='/FILM/"+type+"/"+link+"'><b>"+titolo+"</b></a><div class='tool'></div></li>");
 			arrayfilm.push(titolo);
 		
 	}
-	for(i=middle;i< film.length;i++){
-		var titolo = film[i].href;
-		titolo=generateTitle(titolo);
-		var titleID = generateTitleID(titolo);
-		var link = film[i].href.replace(/'/gi,"&#39;");
-			$("#film2").append("<li class='listfilm'><a  id='"+titleID+"' href='/FILM/"+type+"/"+link+"'>"+titolo+"</a><div class='tool'></div></li>");
-			arrayfilm.push(titolo);
-	}
-	//addBgStyle("film1");
-	//addBgStyle("film2");
-	addFilmEventListener();
-	
 	$("#list_film_autoc").autocomplete({
             source: arrayfilm
         });

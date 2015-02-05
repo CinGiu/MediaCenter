@@ -8,30 +8,20 @@ h2{
 }
 body{
 
-	background-color:lightskyblue;
-	height:100%;
-	font-family:Verdana, Geneva,sans-serif;
+	background-image:url("/css/images/bgironman.jpg");
+	height: 100%;
+	font-family: Verdana, Geneva,sans-serif;
+	background-attachment: fixed;
+	background-position: right -562px top;
+	background-repeat: no-repeat;
 }
 #main{
-	max-width: 1200px;
+	max-width: 1000px;
 	height: 100%;
 	margin:auto;
 
 }
-.square{
-	border:1px solid black;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	height: 120%;
-	margin-top:30px;
-	
-	overflow:hidden;
-	padding-right:15px;
-	padding-left:15px;
-	background-color:white;
-	
-	}
+
 
 #torrent:hover{
 	cursor:pointer;

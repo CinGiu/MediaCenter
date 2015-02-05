@@ -30,13 +30,13 @@ function login(user, pass){
 										alert("prima volta");
 										$("#radio1").attr('checked', true);
 										$("#radio1").button("refresh");
-										TakeFilmList("AVI");
+										TakeFilmList("recenti");
 									}else{
 										var num = folderName.indexOf(page);
 										num = num + 1;
 										$("#radio"+num).attr('checked', true);
 										$("#radio"+num).button("refresh");
-										TakeFilmList(page);
+										TakeFilmList("recenti");
 									}
 									
 									fileManager("","df","",DrawChart);

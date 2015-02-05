@@ -1,7 +1,4 @@
-.split{
-	width:50%;
-	height:auto;
-}
+
 .autocompl{
 	position:relative;
 	font-size:1.4em;
@@ -44,59 +41,9 @@ form{
 	top:50px;
 	font-size:25px;
 }
-#film1, #film2{
-	padding:0px;
+.panel-info>.panel-heading{
+	font-size: x-large;
 }
-#film1 li, #film2 li{
-	list-style-type: none;
-	margin-top: 8px;
-	margin-bottom: 8px;
-	width: 100%;
-	height: 100%;
-	background-color: skyblue;
-	border: 2px solid royalblue;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	cursor: pointer;
-}
-#film1 li a,#film2 li a{
-	color: royalblue;
-	position: relative;
-	text-decoration: none;
-	margin-left:3%;
-	margin-right:10%;
-	vertical-align: middle;
-	line-height: 50px;
-	font-size:1.3em;
-}
-	
-}
-.listfilm:hover{
-	box-shadow: 10px 10px 5px #008FFF;
-	font-size:1.4em;
-}
-.listfilm a:hover{
-	text-shadow: 5px 5px 5px #008FFF;
-}
-#sx_film{
-	float:left;
-	width: 45%;
-	height: 100%;
-	margin-left: 10px;
-}
-#dx_film{
-	float:right;
-	width: 45%;
-	height: 100%;
-	margin-right: 30px;
-}
-a.listfilm{
-	text-shadow: 5px 5px 5px #000000;
-	-moz-box-shadow: -5px 5px 5px #0000;
-	overflow:hidden;
-}
-
 @media only screen and (max-width: 767px) {
 	#sx_film{
 	width: 98%;
