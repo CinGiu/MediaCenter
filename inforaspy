@@ -1,0 +1,46 @@
+############ Parametri da impostare ############
+user="pi"
+tempmax="65"
+mittente="mail.emitter"
+dest="mail.destination"
+smtp="smtp.gmail.com"
+username="google username of emitter"
+pass="password"
+############ Fine Parametri ############
+
+ip_old="`tail /home/$user/.inforaspy`"
+ip_now="`wget -qO- http://checkip.dyndns.org/ | sed "s/.* \([[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*\).*/\1/g"`"
+temp="`cat /sys/class/thermal/thermal_zone0/temp | cut -c1-2`"
+echo $ip_now > /home/$user/.inforaspy
+if [ "$ip_old" != "$ip_now" ]; then
+ titoloip="Ip pubblico raspberry cambiato!"
+ ipresult="Il nuovo ip : $ip_now"
+ sendEmail -f $mittente -t $dest -u $titoloip -s $smtp -xu $username -xp $pass -m $ipresult
+ #you had to edit your own ip updater php script
+ wget -qO- /newip.php?ip=${ip_now}
+fi
+if [ "$temp" -ge "$tempmax" ]; then
+ titolotemp="Allarme temperatura raspberry!"
+ tempresult="Occhio! Il raspberry ha superato la soglia di temperatura di controllo! Ora è a $temp gradi."
+ sendEmail -f $mittente -t $dest -u $titolotemp -s $smtp -xu $username -xp $pass -m $tempresult
+fi
+lista_old=$(<lista.txt)
+lista_new="`ls /media/FILM/TORRENT`"
+if [ "$lista_old" !=  "$lista_new" ]; then
+        echo "File modificati nella cartella"
+        echo "$lista_new" > listaN.txt
+        titolotemp="Novita nella cartella film"
+        tempresult="Avete completato con successo un download.\nLista Film in allegato\nRBP\n"
+        differenze=$(diff lista.txt listaN.txt)
+        echo $differenze
+        echo "$lista_new" > lista.txt
+        echo $differenze > differenze.txt
+        sed -i "s/'/ /g" "differenze.txt"
+        sed -i "s/>/\n\r<br \/> /g" "differenze.txt"
+
+        differ=$(<differenze.txt)
+
+        echo $differ
+        sendEmail -f $mittente -t $dest -u $titolotemp -s $smtp -xu $username -xp $pass -m '"'.$tempresult.$differ.'"'
+fi
+exit

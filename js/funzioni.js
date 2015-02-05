@@ -111,6 +111,15 @@ function LoadHome(){
 		$("#container").load("home.html");
 }
 
+function UpdateFilmList(){
+	var page=getCookie('CinelliHomePage');
+	if(page == "undefined"){
+		TakeFilmList("AVI");
+	}
+	else{
+		TakeFilmList(page);
+	}
+}
 function TakeFilmList(type){
 
 	$.ajax({
