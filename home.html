@@ -6,12 +6,12 @@
     
     var ip_server= document.location.href;
     ip_server=ip_server.split('/')[2];
-		$("#transmission").attr("src","http://"+ip_server+":"+tranmissionPort+"/transmission/web/");
+		$("#transmissionx").attr("src","http://"+ip_server+":"+tranmissionPort+"/transmission/web/");
 	
 </script>
 <div id="main">
 	<h1>Welcome On JARVIS </h1>  
-	<br>
+<br>
 <!--
 		TRANSMISSION
 -->
@@ -20,7 +20,7 @@
 			<h4 class="list-group-item-heading"><b>TRANSMISSION</b></h4>
 		</a>
 		<div id="transmission" class="sublinks collapse" aria-expanded="false" src="http://jarvis:4545/transmission/web/">
-			<iframe id="transmission" src="http://jarvis:4545/transmission/web/"></iframe>
+			<iframe id="transmissionx" src="http://jarvis:4545/transmission/web/"></iframe>
 		</div>
 	</div>
 
@@ -80,12 +80,14 @@
 			<h4 class="list-group-item-heading"><b>SERVER STAT</b></h4>
 		</a>
 		<div id="serverstat" class="sublinks collapse" aria-expanded="false">
-			<div>
-				<div id="info_server_sx" style="position: relative;"><div dir="ltr" style="position: relative; width: 400px; height: 350px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="400" height="350" aria-label="Un grafico." aria-hidden="true" style="overflow: hidden;"><defs id="defs"></defs><rect x="0" y="0" width="400" height="350" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><text text-anchor="start" x="77" y="47.35" font-family="Arial" font-size="11" font-weight="bold" stroke="none" stroke-width="0" fill="#000000">HDD Usage</text></g><g><rect x="248" y="67" width="76" height="29" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="248" y="67" width="76" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="263" y="76.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Occupato</text></g><rect x="248" y="67" width="11" height="11" stroke="none" stroke-width="0" fill="#3366cc"></rect></g><g><rect x="248" y="85" width="76" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="263" y="94.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Libero</text></g><rect x="248" y="85" width="11" height="11" stroke="none" stroke-width="0" fill="#dc3912"></rect></g></g><g><path d="M154,175L80.04740119767094,192.5217901591635A76,76,0,0,1,154,99L154,175A0,0,0,0,0,154,175" stroke="#ffffff" stroke-width="1" fill="#dc3912"></path><text text-anchor="start" x="105.80269099740526" y="140.73785255334928" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#ffffff">28.7%</text></g><g><path d="M154,175L154,99A76,76,0,1,1,80.04740119767094,192.5217901591635L154,175A0,0,0,1,0,154,175" stroke="#ffffff" stroke-width="1" fill="#3366cc"></path><text text-anchor="start" x="202.1973090025947" y="216.96214744665073" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#ffffff">71.3%</text></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><tbody><tr><th>Usage</th><th>Space</th></tr>
+			<div class="serverInfo">
+				<div id="info_server_sx" style="position: relative;"></div>
+				<!-- <div id="info_server_sx" style="position: relative;"><div dir="ltr" style="position: relative; width: 400px; height: 350px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="400" height="350" aria-label="Un grafico." aria-hidden="true" style="overflow: hidden;"><defs id="defs"></defs><rect x="0" y="0" width="400" height="350" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><text text-anchor="start" x="77" y="47.35" font-family="Arial" font-size="11" font-weight="bold" stroke="none" stroke-width="0" fill="#000000">HDD Usage</text></g><g><rect x="248" y="67" width="76" height="29" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="248" y="67" width="76" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="263" y="76.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Occupato</text></g><rect x="248" y="67" width="11" height="11" stroke="none" stroke-width="0" fill="#3366cc"></rect></g><g><rect x="248" y="85" width="76" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="263" y="94.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Libero</text></g><rect x="248" y="85" width="11" height="11" stroke="none" stroke-width="0" fill="#dc3912"></rect></g></g><g><path d="M154,175L80.04740119767094,192.5217901591635A76,76,0,0,1,154,99L154,175A0,0,0,0,0,154,175" stroke="#ffffff" stroke-width="1" fill="#dc3912"></path><text text-anchor="start" x="105.80269099740526" y="140.73785255334928" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#ffffff">28.7%</text></g><g><path d="M154,175L154,99A76,76,0,1,1,80.04740119767094,192.5217901591635L154,175A0,0,0,1,0,154,175" stroke="#ffffff" stroke-width="1" fill="#3366cc"></path><text text-anchor="start" x="202.1973090025947" y="216.96214744665073" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#ffffff">71.3%</text></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><tbody><tr><th>Usage</th><th>Space</th></tr>
 <tr><td>Occupato</td><td>1403754172416</td></tr>
 <tr><td>Libero</td><td>565117972480</td></tr>
 </tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 360px; left: 410px; white-space: nowrap; font-family: Arial; font-size: 11px;">Libero</div><div></div></div>
-				<div id="info_server_dx"><p><b>Uptime: </b> 11:16:08 up 83 days  16:53</p><hr><p><b>CPU Temp:</b> 42.2</p><p><b>Load CPU last minute:</b> 0%</p><p><b>Load CPU last 5 minutes:</b> 2%</p><p><b>Load CPU last 15 minutes:</b> 5%</p><hr><p><b>People Connected Now:</b> 6</p><p><b>Users Logged In:</b>  0 users</p><hr><p><b>Total Space: </b>1.8 TB</p><p><b>Free Space: </b>526.3 GB</p><p><b>Used Space: </b>1.3 TB</p></div>
+				-->
+				<div id="info_server_dx"></div>
 			</div>
 		</div>
 	</div>

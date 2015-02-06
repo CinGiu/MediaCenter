@@ -8,7 +8,7 @@ h2{
 }
 body{
 
-	background-image:url("/css/images/bgironman.jpg");
+	background-image:url("images/bgironman.jpg");
 	height: 100%;
 	font-family: Verdana, Geneva,sans-serif;
 	background-attachment: fixed;
@@ -84,6 +84,12 @@ iframe{
 	height:150px;
 	font-size:120%;
 }
+
+.serverInfo{
+	padding-top:50px;
+	height:450px;
+}
+
 @media only screen and (max-width: 767px) {
 	
 	.square{
