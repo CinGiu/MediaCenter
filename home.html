@@ -1,4 +1,5 @@
-x <script>
+<div id="container"> 
+ <script>
     $("#info").hide();
     var t=$("#info").text();
     //var ip_server=t.substring(t.indexOf(":")+1,t.indexOf("IPv4 only Test"));
@@ -9,110 +10,85 @@ x <script>
 	
 </script>
 <div id="main">
-	<h1>Welcome On JARVIS</h1> 
-	<div id="torrent" class="square">
-		<h2>Torrent</h2> 
-			<iframe id="transmission" src=""></iframe> 
-	</div>
-	<div id="chart_div" class="square"> 
-		<h2>Server STAT</h2>
-		<div id="info_server_sx"></div>
-		<div id="info_server_dx"></div>
-	</div>
-	<div id="film" class="square" >
-		
-		<h2>Film</h2>
-		<div class="autocompl">
-			<label for="list_film_autoc">Cerca Il Film: </label>
-			<input id="list_film_autoc" />
-			<input type="button" value="Cerca" onclick="SearchFilm()"/>
+	<h1>Welcome On JARVIS </h1>  
+	<br>
+<!--
+		TRANSMISSION
+-->
+	<div class="panel panel-info ">
+		<a href="#" class="list-group-item collapsed panel-info" data-toggle="collapse" data-target="#transmission" aria-expanded="false">
+			<h4 class="list-group-item-heading"><b>TRANSMISSION</b></h4>
+		</a>
+		<div id="transmission" class="sublinks collapse" aria-expanded="false" src="http://jarvis:4545/transmission/web/">
+			<iframe id="transmission" src="http://jarvis:4545/transmission/web/"></iframe>
 		</div>
+	</div>
 
-		<div id="Search_Result">
-		</div>
-		<form>
-			<div id="radio">
-				<script>
-					$(document).ready(function(){
-						for(var i=0;i<folderName.length;i++){
-							$("#radio").append('<input type="radio" id="radio'+(i+1)+'" onClick="TakeFilmList(\''+folderPath[i]+'\')" name="radio" /><label for="radio'+(i+1)+'">'+folderName[i]+'</label>');
-						}
-						$(function() {
-							$( "#radio" ).buttonset();
-						});
-					});
-				</script>
-			</div>
-		</form>
-			<div id="sx_film" class="split">
-				<ul id="film1">
-						
-				</ul>
-			</div>
-			<div id="dx_film" class="split">
-				<ul id="film2">
-						
-				</ul>
-			</div>
+	
+<!--
+		FILM
+-->
+	<div class="panel panel-info">
+		<div class="panel-heading"><b>FILM</b></div>
 		
-	</div>
-</div>
-<div id="inputDialog">
-	<div id="topInfo">
-		<div class="flInfo">
-			<img src="" class="copertina" id="copertina" title="copertina" />
-		</div>
-		<div class="flInfo">
-			
-			<table>
-				<tr>
-					<td>Nome</td>
-					<td id="title"></td>
-				</tr>
-				<tr>
-					<td>Anno</td>
-					<td id="year"></td>
-				</tr>
-				<tr>
-					<td>Voto</td>
-					<td id="rating"></td>
-				</tr>
-				<tr>
-					<td>Durata</td>
-					<td id="runtime"></td>
-				</tr>
-				<tr>
-					<td>Genere</td>
-					<td id="genres"></td>
-				</tr>
-				<tr>
-					<td>Regista</td>
-					<td id="directors"></td>
-				</tr>
-				<tr>
-					<td>Sceneggiatore</td>
-					<td id="writers"></td>
-				</tr>
-				<tr>
-					<td>Attori</td>
-					<td><textarea id="actors" readonly>Attori</textarea></td>
-				</tr>
-			</table>			
+		<div class="panel-body">
+			<div class="input-group input-group-lg">
+				<span class="input-group-addon" style="background-color: #d9edf7;">Cerca il film</span>
+				<input id="list_film_autoc" class="form-control ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+				<span class="input-group-btn">
+					<button class="btn btn-default" onclick="SearchFilm()" value="Cerca" type="button">Cerca</button>
+				</span>
+			</div>
+
+			<div id="Search_Result"></div>
+
+			<hr>
+			<!-- Nav tabs -->
+			<ul class="nav nav-pills nav-justified" role="tablist" style="margin-bottom: 3px;">
+				<li role="navigation" class="active"><a onclick="TakeFilmList('recenti')" href="#recenti" aria-controls="recenti" role="tab" data-toggle="tab">Recenti</a></li>
+				<li role="navigation"><a onclick="TakeFilmList('az')" href="#az" aria-controls="az" role="tab" data-toggle="tab">A-Z</a></li>
+				<li role="navigation"><a onclick="TakeFilmList('serie')" href="#serie" aria-controls="serie" role="tab" data-toggle="tab">Serie</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="recenti">
+					<div id="sx_film" class="split">
+						<ul class="list-group" id="film"></ul>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="az">
+					<div id="sx_film" class="split">
+						<ul class="list-group" id="film"></ul>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="serie">
+					<div id="sx_film" class="split">
+						<ul class="list-group" id="film"></ul>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
-	<div class="btInfo">
-		<textarea id="plot" readonly>
-		</textarea>
-	</div>
-	<div class="btInfo">
-		<a href="http://www.google.it/search?q='+encodeURI(nome)+'" class="bmore" id="cerca"	title="Cerca"    target="_blank"><img src="css/DecorateMeImg/search.png" /></a>
-		<a href="" 													class="bmore" id="youtube"	title="youtube"  target="_blank"><img src="css/DecorateMeImg/youtube.png" /></a>
-		<a href="" onclick="return fbs_click()"                 	class="bmore" id="facebook"	title="facebook" target="_blank"><img src="css/DecorateMeImg/facebook.png" /></a>
-		<a href="" 													class="bmore" id="twitter"	title="twitter"  target="_blank"><img src="css/DecorateMeImg/twitter.png" /></a>
-		<a onClick=""  												class="bmore" id="rinomina"	title="rinomina" target="_blank"><img src="css/DecorateMeImg/modifica.png" /></a>
-		<a onClick=""  												class="bmore" id="sposta"	title="sposta"   target="_blank"><img src="css/DecorateMeImg/sposta.png" /></a>
-		<a onClick="" 												class="bmore" id="elimina"	title="Elimina"  target="_blank"><img src="css/DecorateMeImg/elimina.png" /></a> 
+<!--
+		STATISTICHE
+-->
+	
+	<div class="panel panel-info ">
+		<a href="#" class="list-group-item collapsed panel-info" data-toggle="collapse" data-target="#serverstat" aria-expanded="false">
+			<h4 class="list-group-item-heading"><b>SERVER STAT</b></h4>
+		</a>
+		<div id="serverstat" class="sublinks collapse" aria-expanded="false">
+			<div>
+				<div id="info_server_sx" style="position: relative;"><div dir="ltr" style="position: relative; width: 400px; height: 350px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="400" height="350" aria-label="Un grafico." aria-hidden="true" style="overflow: hidden;"><defs id="defs"></defs><rect x="0" y="0" width="400" height="350" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><text text-anchor="start" x="77" y="47.35" font-family="Arial" font-size="11" font-weight="bold" stroke="none" stroke-width="0" fill="#000000">HDD Usage</text></g><g><rect x="248" y="67" width="76" height="29" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="248" y="67" width="76" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="263" y="76.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Occupato</text></g><rect x="248" y="67" width="11" height="11" stroke="none" stroke-width="0" fill="#3366cc"></rect></g><g><rect x="248" y="85" width="76" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="263" y="94.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Libero</text></g><rect x="248" y="85" width="11" height="11" stroke="none" stroke-width="0" fill="#dc3912"></rect></g></g><g><path d="M154,175L80.04740119767094,192.5217901591635A76,76,0,0,1,154,99L154,175A0,0,0,0,0,154,175" stroke="#ffffff" stroke-width="1" fill="#dc3912"></path><text text-anchor="start" x="105.80269099740526" y="140.73785255334928" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#ffffff">28.7%</text></g><g><path d="M154,175L154,99A76,76,0,1,1,80.04740119767094,192.5217901591635L154,175A0,0,0,1,0,154,175" stroke="#ffffff" stroke-width="1" fill="#3366cc"></path><text text-anchor="start" x="202.1973090025947" y="216.96214744665073" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#ffffff">71.3%</text></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><tbody><tr><th>Usage</th><th>Space</th></tr>
+<tr><td>Occupato</td><td>1403754172416</td></tr>
+<tr><td>Libero</td><td>565117972480</td></tr>
+</tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 360px; left: 410px; white-space: nowrap; font-family: Arial; font-size: 11px;">Libero</div><div></div></div>
+				<div id="info_server_dx"><p><b>Uptime: </b> 11:16:08 up 83 days  16:53</p><hr><p><b>CPU Temp:</b> 42.2</p><p><b>Load CPU last minute:</b> 0%</p><p><b>Load CPU last 5 minutes:</b> 2%</p><p><b>Load CPU last 15 minutes:</b> 5%</p><hr><p><b>People Connected Now:</b> 6</p><p><b>Users Logged In:</b>  0 users</p><hr><p><b>Total Space: </b>1.8 TB</p><p><b>Free Space: </b>526.3 GB</p><p><b>Used Space: </b>1.3 TB</p></div>
+			</div>
+		</div>
 	</div>
 </div>
-<div id="editDialog">
+
 </div>
