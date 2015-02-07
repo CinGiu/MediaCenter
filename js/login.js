@@ -30,19 +30,26 @@ function login(user, pass){
 										alert("prima volta");
 										$("#radio1").attr('checked', true);
 										$("#radio1").button("refresh");
+										
+										/* Cosi viene fatto solamente una vola riempiendo le liste */
 										TakeFilmList("recenti");
+										TakeFilmList("az");
+										TakeFilmList("serie");
 									}else{
 										var num = folderName.indexOf(page);
 										num = num + 1;
 										$("#radio"+num).attr('checked', true);
 										$("#radio"+num).button("refresh");
+										
+										/* Cosi viene fatto solamente una vola riempiendo le liste */
 										TakeFilmList("recenti");
-									}
+										TakeFilmList("az");
+										TakeFilmList("serie");									}
 									
-									fileManager("","df","",DrawChart);
+										fileManager("","df","",DrawChart);
 									
-									//google.setOnLoadCallback(DrawChart);									
-								});
+										//google.setOnLoadCallback(DrawChart);									
+									});
 								
 								
 							}else{

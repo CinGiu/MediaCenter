@@ -45,26 +45,26 @@
 			<hr>
 			<!-- Nav tabs -->
 			<ul class="nav nav-pills nav-justified" role="tablist" style="margin-bottom: 3px;">
-				<li role="navigation" class="active"><a onclick="TakeFilmList('recenti')" href="#recenti" aria-controls="recenti" role="tab" data-toggle="tab">Recenti</a></li>
-				<li role="navigation"><a onclick="TakeFilmList('az')" href="#az" aria-controls="az" role="tab" data-toggle="tab">A-Z</a></li>
-				<li role="navigation"><a onclick="TakeFilmList('serie')" href="#serie" aria-controls="serie" role="tab" data-toggle="tab">Serie</a></li>
+				<li role="navigation" class="active"><a href="#recenti" aria-controls="recenti" role="tab" data-toggle="tab">Recenti</a></li>
+				<li role="navigation"><a href="#az" aria-controls="az" role="tab" data-toggle="tab">A-Z</a></li>
+				<li role="navigation"><a href="#serie" aria-controls="serie" role="tab" data-toggle="tab">Serie</a></li>
 			</ul>
 
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="recenti">
 					<div id="sx_film" class="split">
-						<ul class="list-group" id="film"></ul>
+						<ul class="list-group" id="list-recenti"></ul>
 					</div>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="az">
 					<div id="sx_film" class="split">
-						<ul class="list-group" id="film"></ul>
+						<ul class="list-group" id="list-az"></ul>
 					</div>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="serie">
 					<div id="sx_film" class="split">
-						<ul class="list-group" id="film"></ul>
+						<ul class="list-group" id="list-serie"></ul>
 					</div>
 				</div>
 			</div>
@@ -76,7 +76,7 @@
 -->
 	
 	<div class="panel panel-info ">
-		<a href="#" class="list-group-item collapsed panel-info" data-toggle="collapse" data-target="#serverstat" aria-expanded="false">
+		<a href="" class="list-group-item collapsed panel-info" data-toggle="collapse" data-target="#serverstat" aria-expanded="false">
 			<h4 class="list-group-item-heading"><b>SERVER STAT</b></h4>
 		</a>
 		<div id="serverstat" class="sublinks collapse" aria-expanded="false">

@@ -85,41 +85,12 @@ function DrawChart(x){
 	  $("#info_server_dx").append("<p><b>Used Space: </b>"+btoGB(info[0].total_space - info[0].free_space)+"</p>");
 }
 
-function setTorrent(){
-	var op;
-	if($("#CT").text() =="Disattivo"){
-		op="apri";
-	}else{
-		op="chiudi";
-	}
-	$.ajax({
-            type:"POST",
-            data:"action="+op,
-            url:"setTorrent.php",
-            success: function(){
-            				checkTorrent();
-							},
-        });
-}
-function loadFilm(){
-	$("#container").load("film.html");
-	setTimeout('TakeFilmList()',2000);
-	
-			
-}
+
 function LoadHome(){
 		$("#container").load("home.html");
 }
 
-function UpdateFilmList(){
-	var page=getCookie('CinelliHomePage');
-	if(page == "undefined"){
-		TakeFilmList("AVI");
-	}
-	else{
-		TakeFilmList(page);
-	}
-}
+
 function TakeFilmList(type){
 
 	$.ajax({
@@ -128,13 +99,6 @@ function TakeFilmList(type){
             url:"php/ReadFile.php",
             success: function(x){
             				var film =JSON.parse(x);
-            				$("#film1").html("");
-            				if(type == "serie"){
-								type = "SERIE";
-							}else{
-								type = "TORRENT";
-							}
-							$(".list-group").html("");
             				film_parser(film, type);
             				setCookie("CinelliHomePage", type, 30);
 							},
@@ -142,20 +106,23 @@ function TakeFilmList(type){
 }
 
 function film_parser(film, type){
-	var middle=Math.floor(film.length/2);
 	var arrayfilm = [];
 	for(i=0;i< film.length;i++){
 		var titolo = film[i].href;
 		titolo=generateTitle(titolo);
 		var titleID = generateTitleID(titolo);
 		var link = film[i].href.replace(/'/gi,"&#39;");
-			$(".list-group").append("<li class='list-group-item list-group-item-info'><a id='"+titleID+"' href='/FILM/"+type+"/"+link+"'><b>"+titolo+"</b></a><div class='tool'></div></li>");
-			arrayfilm.push(titolo);
-		
+		$("#list-"+type).append("<li class='list-group-item list-group-item-info'><a id='"+titleID+"' href='/FILM/"+type+"/"+link+"'><b>"+titolo+"</b></a><div class='tool'></div></li>");
+		arrayfilm.push(titolo);
 	}
-	$("#list_film_autoc").autocomplete({
-            source: arrayfilm
-        });
+	
+	// Inserisco array della lista film az in AUTOCOMPLETE
+	if(type == "az"){
+		$("#list_film_autoc").autocomplete({
+				source: arrayfilm
+			});
+	}
+	
 }
 function generateTitle(titolo){
 
