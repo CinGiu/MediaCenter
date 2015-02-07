@@ -107,12 +107,17 @@ function TakeFilmList(type){
 
 function film_parser(film, type){
 	var arrayfilm = [];
+	if(type=="recenti" || type=="az"){
+		path = "TORRENT";
+	}else{
+		path = "SERIE";
+	}
 	for(i=0;i< film.length;i++){
 		var titolo = film[i].href;
 		titolo=generateTitle(titolo);
 		var titleID = generateTitleID(titolo);
 		var link = film[i].href.replace(/'/gi,"&#39;");
-		$("#list-"+type).append("<li class='list-group-item list-group-item-info'><a id='"+titleID+"' href='/FILM/"+type+"/"+link+"'><b>"+titolo+"</b></a><div class='tool'></div></li>");
+		$("#list-"+type).append("<li class='list-group-item list-group-item-info'><a id='"+titleID+"' href='/FILM/"+path+"/"+link+"'><b>"+titolo+"</b></a><div class='tool'></div></li>");
 		arrayfilm.push(titolo);
 	}
 	
@@ -125,20 +130,28 @@ function film_parser(film, type){
 	
 }
 function generateTitle(titolo){
-
+	titolo=titolo.replace(/\./g,' ');
     titolo=titolo.replace(/\[([^\[])*\]/g,"");
     titolo=titolo.replace(/\(([^\[])*\)/g,"");
     titolo=titolo.replace(/BDrip/gi,"");
+    titolo=titolo.replace(/BluRay/gi,"");
     titolo=titolo.replace(/DIVX/gi,"");
+    titolo=titolo.replace(/MIRCrew/gi,"");
     titolo=titolo.replace(/HDTV/gi,"");
     titolo=titolo.replace(/HDTS/gi,"");
     titolo=titolo.replace(/CAM/g,"");
+    titolo=titolo.replace(/2013DTS/g,"");
+    titolo=titolo.replace(/ -LIFE/g,"");
+    titolo=titolo.replace(/Dual/g,"");
+    titolo=titolo.replace(/DUAL/g,"");
     titolo=titolo.replace(/ LD /gi,"");
     titolo=titolo.replace(/XviD/gi,"");
     titolo=titolo.replace(/BmA/gi,"");
     titolo=titolo.replace(/OAV/g,"");
     titolo=titolo.replace(/x264/gi,"");
     titolo=titolo.replace(/1080p/gi,"");
+    titolo=titolo.replace(/subeng/gi,"");
+    titolo=titolo.replace(/itasub/gi,"");
     titolo=titolo.replace(/720p/gi,"");
     titolo=titolo.replace(/480p/gi,"");
     titolo=titolo.replace(/.avi/gi,"");
@@ -146,6 +159,7 @@ function generateTitle(titolo){
     titolo=titolo.replace(/multisub/gi,"");
     titolo=titolo.replace(/Complete/gi,"");
     titolo=titolo.replace(/ Eng /gi,"");
+    titolo=titolo.replace(/ eng /gi,"");
     titolo=titolo.replace(/Eng/g,"");
     titolo=titolo.replace(/ Fra /gi,"");
     titolo=titolo.replace(/ Ita /gi,"");
@@ -174,7 +188,7 @@ function generateTitle(titolo){
     titolo=titolo.replace(/ACC/g,"");
     titolo=titolo.replace(/AAC/g,"");
     titolo=titolo.replace(/_/g,"");
-    titolo=titolo.replace(/\./g,' ');
+    
    
     titolo=titolo.replace(/ (Eng|Fra|Ita|Ger|Spa|Hun|Rus|Cz)(Eng|Fra|Ita|Ger|Spa|Hun|Rus|Cz)* /gi,"");
     titolo=titolo.replace(/ (Eng|Fra|Ita|Ger|Spa|Hun|Rus|Cz)(Eng|Fra|Ita|Ger|Spa|Hun|Rus|Cz) /gi,"");
@@ -193,7 +207,7 @@ function SearchFilm(){
 	$("#Search_Result").html("");
 	var success=false;
 	$("body").find("#"+titleID).each(function(){
-		$("#Search_Result").append('<a href="'+$("#"+titleID).attr("href")+'">'+film+'</a>');
+		$("#Search_Result").append('<div class="alert alert-success" role="alert"><a href="'+$("#"+titleID).attr("href")+'">'+film+'</a></div>');
 		success=true;	
 	});
 	
@@ -201,7 +215,7 @@ function SearchFilm(){
 		$("a:regex(id, .*"+film+".*)").each(function(){
 			var p=this;
 			if($(p).attr("href")!=null){
-				$("#Search_Result").append('<a href="'+$(p).attr("href")+'">'+$(p).text()+'</a><br />');
+				$("#Search_Result").append('<div class="alert alert-success" role="alert"><a href="'+$(p).attr("href")+'">'+$(p).text()+'</a></div>');
 				success=true;
 			}
 		});
