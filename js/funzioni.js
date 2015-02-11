@@ -38,7 +38,9 @@ $(document).ready(function(){
 				}
 		});	
 		
-		
+	 $(".settings").live("click",function(){
+		 $("#container").load("settings.html");
+	});	
 }); 
 
 function DrawChart(x){

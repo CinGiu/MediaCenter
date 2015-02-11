@@ -129,6 +129,10 @@ iframe{
   border-top-right-radius: 0;
 }
 
+.settings{
+	float:right;
+}
+
 @media only screen and (max-width: 767px) {
 	
 	.square{
