@@ -4,5 +4,5 @@
 
 var hostName="JARVIS"
 var tranmissionPort="4545";
-var folderName=["SD","HD","SERIE","BOOKS","NUOVI","TORRENT"];
-var folderPath=["AVI","MKV","SERIE","BOOKS","TORRENT","originalTorrent"];
+var folderName=["recenti","a-z","serie","musica"];
+var folderPath=["TORRENT","TORRENT","SERIE","MUSICA"];

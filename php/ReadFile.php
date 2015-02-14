@@ -1,6 +1,7 @@
 <?php
 	include 'login.php';  
 	$type=$_POST["type"];
+	$folder=$_POST["folder"];
 	
 		
 	function az($sdir){
@@ -32,21 +33,16 @@
 		}
 		usort($jresult, "cmp");
 		$jresult = array_slice($jresult, 0, 15);
-		echo json_encode($jresult);
+		return json_encode($jresult);
 	}
 	
 	
 	if(isLogged()){
 		if($type == "recenti"){
-			$dir = "/media/FILM/FILM/TORRENT/";
-			recenti($dir);
-		}
-		if($type == "az"){
-			$dir = "/media/FILM/FILM/TORRENT";
-			echo az($dir);
-		}
-		if($type == "serie"){
-			$dir = "/media/FILM/FILM/SERIE";
+			$dir = "/media/FILM/FILM/$folder/";
+			echo recenti($dir);
+		}else{
+			$dir = "/media/FILM/FILM/$folder/";
 			echo az($dir);
 		}
 	}else{

@@ -22,36 +22,9 @@ function login(user, pass){
 								setCookie("CinelliHomeUN", user, 30);
 								setCookie("CinelliHomePD", pass, 30);
 								$("#container").load("home.html",function(){
-									
-									//PRENDO DAI COOKIE LA PAGINA GIUSTA 
-									var page=getCookie('CinelliHomePage');
-									
-									if(page == "undefined"){
-										alert("prima volta");
-										$("#radio1").attr('checked', true);
-										$("#radio1").button("refresh");
-										
-										/* Cosi viene fatto solamente una vola riempiendo le liste */
-										TakeFilmList("recenti");
-										TakeFilmList("az");
-										TakeFilmList("serie");
-									}else{
-										var num = folderName.indexOf(page);
-										num = num + 1;
-										$("#radio"+num).attr('checked', true);
-										$("#radio"+num).button("refresh");
-										
-										/* Cosi viene fatto solamente una vola riempiendo le liste */
-										TakeFilmList("recenti");
-										TakeFilmList("az");
-										TakeFilmList("serie");									}
-									
-										fileManager("","df","",DrawChart);
-									
-										//google.setOnLoadCallback(DrawChart);									
+									MakeHome();	
+									fileManager("","df","",DrawChart);							
 									});
-								
-								
 							}else{
 								alert("hai sbagliato, riprova!");
 								}

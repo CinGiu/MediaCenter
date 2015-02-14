@@ -18,7 +18,6 @@ $(document).ready(function(){
 			
      
      $("#torrent").click(function(){
-			//window.open ('http://2.234.107.17:4545','_self',false);
 			if($(this).css("height")>"400px"){
 				$(this).css("height", "400px");
 			}else{
@@ -38,8 +37,11 @@ $(document).ready(function(){
 				}
 		});	
 		
-	 $(".settings").live("click",function(){
+	$(".settings").live("click",function(){
 		 $("#container").load("settings.html");
+	});	
+	$(".home").live("click",function(){
+		 $("#container").load("home.html");
 	});	
 }); 
 
@@ -89,37 +91,51 @@ function DrawChart(x){
 
 
 function LoadHome(){
-		$("#container").load("home.html");
+		$("#container").load("home.html"); 
 }
 
+function MakeHome(){
+	
+	for (var i=0; i < folderName.length; i++){
+		tab = folderName[i];
+		if(i == 0){
+			var active="active";
+		}else{
+			var active = "";
+		}
+		
+		$(".tab-list").append('<li role="navigation" class="'+active+'"><a href="#'+tab.replace("-","")+'" aria-controls="'+tab.replace("-","")+'" role="tab" data-toggle="tab">'+Title(tab)+'</a></li>');
+		$(".content-list").append('<div role="tabpanel" class="tab-pane '+active+'" id="'+tab.replace("-","")+'"><div id="sx_film" class="split"><ul class="list-group" id="list-'+tab.replace("-","")+'"></ul></div></div>');
+		TakeFilmList(tab.replace("-",""),folderPath[i]);
+	}	
+}
 
-function TakeFilmList(type){
+function TakeFilmList(type,folder){
 
 	$.ajax({
             type:"POST",
-            data:"type="+type,
+            data:{"type":type,"folder":folder},
             url:"php/ReadFile.php",
             success: function(x){
             				var film =JSON.parse(x);
-            				film_parser(film, type);
-            				setCookie("CinelliHomePage", type, 30);
+            				film_parser(film, type, folder);
 							},
         });
 }
 
-function film_parser(film, type){
+function film_parser(film,type, folder){
 	var arrayfilm = [];
-	if(type=="recenti" || type=="az"){
-		path = "TORRENT";
-	}else{
-		path = "SERIE";
-	}
+	//~ if(type=="recenti" || type=="az"){
+		//~ path = "TORRENT";
+	//~ }else{
+		//~ path = "SERIE";
+	//~ }
 	for(i=0;i< film.length;i++){
 		var titolo = film[i].href;
 		titolo=generateTitle(titolo);
 		var titleID = generateTitleID(titolo);
 		var link = film[i].href.replace(/'/gi,"&#39;");
-		$("#list-"+type).append("<li class='list-group-item list-group-item-info'><a id='"+titleID+"' href='/FILM/"+path+"/"+link+"'><b>"+titolo+"</b></a><div class='tool'></div></li>");
+		$("#list-"+type).append("<li class='list-group-item list-group-item-info'><a id='"+titleID+"' href='/FILM/"+folder+"/"+link+"'><b>"+titolo+"</b></a><div class='tool'></div></li>");
 		arrayfilm.push(titolo);
 	}
 	
@@ -257,3 +273,7 @@ function btoGB(fileSizeInBytes) {
     return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
 };
 
+function Title(string)
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
