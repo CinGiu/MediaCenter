@@ -105,7 +105,7 @@ function MakeHome(){
 		}
 		
 		$(".tab-list").append('<li role="navigation" class="'+active+'"><a href="#'+tab.replace("-","")+'" aria-controls="'+tab.replace("-","")+'" role="tab" data-toggle="tab">'+Title(tab)+'</a></li>');
-		$(".content-list").append('<div role="tabpanel" class="tab-pane '+active+'" id="'+tab.replace("-","")+'"><ul class="list-group list-main-film" id="list-'+tab.replace("-","")+'"></ul></div>');
+		$(".content-list").append('<div role="tabpanel" class="tab-pane '+active+'" id="'+tab.replace("-","")+'"><ul class="list-group list-'+tab.replace("-","")+'" id="list-'+tab.replace("-","")+'"></ul></div>');
 		TakeFilmList(tab.replace("-",""),folderPath[i]);
 	}	
 }
@@ -123,17 +123,33 @@ function TakeFilmList(type,folder){
         });
 }
 function ManageSubFolder(type, folder, level){
-	$(".sub_folder_list").remove();
-	$("#"+type).append('<ul class="list-group sub_folder_list" id="list-sub-'+level+'"></ul>');
-	$("#list-"+type).animate({
-						width: "50%"
+	var main_type = type.split("-");
+	var size = (100 / (Number(level) + 2)) -0.2;
+	//alert(size);
+	main_type = main_type[0];
+	
+	
+	if(Number(level)==0){
+		$(".sub_folder_list").remove();
+	}else{
+		$("#list-"+main_type+"-sub-"+Number(level)).remove();
+	}
+	$("#"+main_type).append('<ul class="list-group sub_folder_list" id="list-'+main_type+'-sub-'+level+'"></ul>');
+	$(".sub_folder_list").css("width", size+"%");
+	$("#list-"+main_type).animate({
+						width: size+"%"
 					  }, 500, function() {
-						TakeFilmList("sub-"+level,folder);
+						TakeFilmList(main_type+"-sub-"+level,folder);
 					  });
-
 }
 function film_parser(film,type, folder){
 	var arrayfilm = [];
+	var splittedtype = type.split("-");
+	if(splittedtype[1] == "sub"){
+		var level = Number(splittedtype[2]) + 1;
+	}else{
+		var level = 0;
+	}
 	
 	for(i=0;i< film.length;i++){
 		var titolo = film[i].href;
@@ -144,7 +160,7 @@ function film_parser(film,type, folder){
 		
 		
 		if(film[i].isdir){
-			var icon = '<span onclick="ManageSubFolder(\''+type+'\',\''+folder+"/"+link+'\',0)" class="glyphicon glyphicon-chevron-right" style="float:right" aria-hidden="true"></span>';
+			var icon = '<span onclick="ManageSubFolder(\''+type+'\',\''+folder+"/"+link+'\',\''+level+'\')" class="glyphicon glyphicon-chevron-right" style="float:right" aria-hidden="true"></span>';
 		}else{
 			var estension = href.split(".");
 			estension = estension[estension.length-1];
