@@ -4,13 +4,19 @@
 	$folder=$_POST["folder"];
 	
 		
-	function az($sdir){
-		$files1 = scandir($sdir);
+	function az($dir){
+		$files = scandir($dir);
 		$jresult= array();
 		$i=0;
-		foreach($files1 as $aa){
-			if($aa != "." && $aa != ".."){
-				$jresult[$i]=array("href"=>$aa);
+		foreach ($files as $node) {
+			if($node != "." && $node != ".."){
+				$complete_path = $dir.$node;
+				if(is_dir($complete_path)){ 
+					$isdir = true;
+				}else{
+					$isdir = false;
+				}
+				$jresult[$i]=array("href"=>$node,"isdir"=>$isdir);
 				$i++;	
 			}	
 		}
@@ -27,7 +33,13 @@
 		$i=0;
 		foreach ($files as $node) {
 			if($node != "." && $node != ".."){
-				$jresult[$i] = array("filetime"=>filemtime($dir.$node), "href"=>$node);
+				$complete_path = $dir.$node;
+				if(is_dir($complete_path)){ 
+					$isdir = true;
+				}else{
+					$isdir = false;
+				}
+				$jresult[$i] = array("filetime"=>filemtime($dir.$node), "href"=>$node,"isdir"=>$isdir);
 				$i++;
 			}
 		}
