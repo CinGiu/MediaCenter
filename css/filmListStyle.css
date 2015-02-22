@@ -42,6 +42,9 @@ form{
 .list-group{
 	float:left;
 	width:100%;
+	margin-left:1px;
+	margin-right:1px;
+	
 }
 @media only screen and (max-width: 767px) {
 	#sx_film{

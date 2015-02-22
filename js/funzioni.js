@@ -129,7 +129,7 @@ function TakeFilmList(type,folder){
 //~ TYPE: del tipo recenti o recenti-sub-numero per indicare a quale sotto livello si è di recenti (main_type) 
 function ManageSubFolder(type, folder, level){
 	var main_type = type.split("-");
-	var size = (100 / (Number(level) + 2)) - 0.2;
+	var size = (100 / (Number(level) + 2)) - 1;
 	main_type = main_type[0];
 
 	if(Number(level)==0){
@@ -147,7 +147,7 @@ function ManageSubFolder(type, folder, level){
 	
 	var elementPosition = $('.content-list').offset();
 	if($(window).scrollTop() > elementPosition.top){
-		$('.sub_folder_list').css('margin-top',$(window).scrollTop());
+		$('.sub_folder_list').css('margin-top',$(window).scrollTop() - elementPosition.top + 10);
 	} 
 	
 }
