@@ -34,6 +34,7 @@ form{
 .sub_folder_list{
 	float: right;
 	width: 50%;
+	margin-left:2px;
 }
 .list-main-film{
 	float: left;
@@ -42,8 +43,7 @@ form{
 .list-group{
 	float:left;
 	width:100%;
-	margin-left:1px;
-	margin-right:1px;
+
 	
 }
 @media only screen and (max-width: 767px) {
