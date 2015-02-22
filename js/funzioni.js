@@ -5,7 +5,10 @@
  * */
  var arrayfilm = new Array();
 $(document).ready(function(){  
+	
 	InitLogin();
+	
+	
 	
 	$( "#pass" ).keyup(function(key)
 			{
@@ -141,6 +144,12 @@ function ManageSubFolder(type, folder, level){
 					  }, 500, function() {
 						TakeFilmList(main_type+"-sub-"+level,folder);
 					  });
+	
+	var elementPosition = $('.content-list').offset();
+	if($(window).scrollTop() > elementPosition.top){
+		$('.sub_folder_list').css('margin-top',$(window).scrollTop());
+	} 
+	
 }
 
 function reset_list(){
