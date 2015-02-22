@@ -147,7 +147,7 @@ function ManageSubFolder(type, folder, level){
 	
 	var elementPosition = $('.content-list').offset();
 	if($(window).scrollTop() > elementPosition.top){
-		$('.sub_folder_list').css('margin-top',$(window).scrollTop() - elementPosition.top + 10);
+		$('.sub_folder_list').css('margin-top',$(window).scrollTop() - elementPosition.top + 3);
 	} 
 	
 }
