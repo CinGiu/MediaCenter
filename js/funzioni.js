@@ -99,13 +99,13 @@ function MakeHome(){
 	for (var i=0; i < folderName.length; i++){
 		tab = folderName[i];
 		if(i == 0){
-			var active="active";
+			var active="active"; 
 		}else{
 			var active = "";
 		}
 		
 		$(".tab-list").append('<li role="navigation" class="'+active+'"><a href="#'+tab.replace("-","")+'" aria-controls="'+tab.replace("-","")+'" role="tab" data-toggle="tab">'+Title(tab)+'</a></li>');
-		$(".content-list").append('<div role="tabpanel" class="tab-pane '+active+'" id="'+tab.replace("-","")+'"><div id="sx_film" class="split"><ul class="list-group" id="list-'+tab.replace("-","")+'"></ul></div></div>');
+		$(".content-list").append('<div role="tabpanel" class="tab-pane '+active+'" id="'+tab.replace("-","")+'"><ul class="list-group list-main-film" id="list-'+tab.replace("-","")+'"></ul></div>');
 		TakeFilmList(tab.replace("-",""),folderPath[i]);
 	}	
 }
@@ -122,20 +122,38 @@ function TakeFilmList(type,folder){
 							},
         });
 }
+function ManageSubFolder(type, folder, level){
+	$(".sub_folder_list").remove();
+	$("#"+type).append('<ul class="list-group sub_folder_list" id="list-sub-'+level+'"></ul>');
+	$("#list-"+type).animate({
+						width: "50%"
+					  }, 500, function() {
+						TakeFilmList("sub-"+level,folder);
+					  });
 
+}
 function film_parser(film,type, folder){
 	var arrayfilm = [];
-	//~ if(type=="recenti" || type=="az"){
-		//~ path = "TORRENT";
-	//~ }else{
-		//~ path = "SERIE";
-	//~ }
+	
 	for(i=0;i< film.length;i++){
 		var titolo = film[i].href;
 		titolo=generateTitle(titolo);
 		var titleID = generateTitleID(titolo);
 		var link = film[i].href.replace(/'/gi,"&#39;");
-		$("#list-"+type).append("<li class='list-group-item list-group-item-info'><a id='"+titleID+"' href='/FILM/"+folder+"/"+link+"'><b>"+titolo+"</b></a><div class='tool'></div></li>");
+		var href = "/FILM/"+folder+"/"+link;
+		
+		
+		if(film[i].isdir){
+			var icon = '<span onclick="ManageSubFolder(\''+type+'\',\''+folder+"/"+link+'\',0)" class="glyphicon glyphicon-chevron-right" style="float:right" aria-hidden="true"></span>';
+		}else{
+			var estension = href.split(".");
+			estension = estension[estension.length-1];
+			var icon = '<span style="float:right" ><b>'+estension.toUpperCase();+'</b></span>';
+			
+		}
+		
+		
+		$("#list-"+type).append("<li class='list-group-item list-group-item-info lista'><a id='"+titleID+"' href='"+href+"'><b>"+titolo+"</b></a>"+icon+"</li>");
 		arrayfilm.push(titolo);
 	}
 	

@@ -30,6 +30,15 @@ form{
 .panel-info>.panel-heading{
 	font-size: x-large;
 }
+
+.sub_folder_list{
+	float: right;
+	width: 50%;
+}
+.list-main-film{
+	float: left;
+	width: 100%;
+}
 @media only screen and (max-width: 767px) {
 	#sx_film{
 	width: 98%;
