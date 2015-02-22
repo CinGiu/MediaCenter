@@ -104,7 +104,7 @@ function MakeHome(){
 			var active = "";
 		}
 		
-		$(".tab-list").append('<li role="navigation" class="'+active+'"><a href="#'+tab.replace("-","")+'" aria-controls="'+tab.replace("-","")+'" role="tab" data-toggle="tab">'+Title(tab)+'</a></li>');
+		$(".tab-list").append('<li role="navigation" onclick="reset_list()" class="'+active+'"><a href="#'+tab.replace("-","")+'" aria-controls="'+tab.replace("-","")+'" role="tab" data-toggle="tab">'+Title(tab)+'</a></li>');
 		$(".content-list").append('<div role="tabpanel" class="tab-pane '+active+'" id="'+tab.replace("-","")+'"><ul class="list-group list-'+tab.replace("-","")+'" id="list-'+tab.replace("-","")+'"></ul></div>');
 		TakeFilmList(tab.replace("-",""),folderPath[i]);
 	}	
@@ -122,13 +122,13 @@ function TakeFilmList(type,folder){
 							},
         });
 }
+
+//~ TYPE: del tipo recenti o recenti-sub-numero per indicare a quale sotto livello si è di recenti (main_type) 
 function ManageSubFolder(type, folder, level){
 	var main_type = type.split("-");
-	var size = (100 / (Number(level) + 2)) -0.2;
-	//alert(size);
+	var size = (100 / (Number(level) + 2)) - 0.2;
 	main_type = main_type[0];
-	
-	
+
 	if(Number(level)==0){
 		$(".sub_folder_list").remove();
 	}else{
@@ -141,6 +141,11 @@ function ManageSubFolder(type, folder, level){
 					  }, 500, function() {
 						TakeFilmList(main_type+"-sub-"+level,folder);
 					  });
+}
+
+function reset_list(){
+	$(".sub_folder_list").remove();
+	$(".list-group").css("width","100%");
 }
 function film_parser(film,type, folder){
 	var arrayfilm = [];
@@ -160,7 +165,7 @@ function film_parser(film,type, folder){
 		
 		
 		if(film[i].isdir){
-			var icon = '<span onclick="ManageSubFolder(\''+type+'\',\''+folder+"/"+link+'\',\''+level+'\')" class="glyphicon glyphicon-chevron-right" style="float:right" aria-hidden="true"></span>';
+			var icon = '<span onclick="ManageSubFolder(\''+type+'\',\''+folder+"/"+link+'\',\''+level+'\')" class="glyphicon glyphicon-chevron-right cliccable" style="float:right" aria-hidden="true"></span>';
 		}else{
 			var estension = href.split(".");
 			estension = estension[estension.length-1];
