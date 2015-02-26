@@ -55,8 +55,8 @@
 		return $result;
 	}
 	function isLogged(){		
-		$name=$_COOKIE["name"];
-		$pswd=$_COOKIE["pswd"];
+		$name=$_COOKIE["CinelliHomeUN"];
+		$pswd=$_COOKIE["CinelliHomePD"];
 		if(login($name,$pswd)){
 			return true;
 		}else{

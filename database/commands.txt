@@ -1,0 +1,2 @@
+CREATE TABLE user (id INTEGER PRIMARY KEY,name TEXT  UNIQUE, email TEXT UNIQUE,pswd TEXT);
+INSERT INTO user (name,email,pswd) VALUES ('username','email','sha1(password)');
