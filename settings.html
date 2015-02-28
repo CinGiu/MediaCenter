@@ -27,17 +27,29 @@
 <script src="js/options.js" type="text/javascript"></script>
 <script>
 	$(document).ready(function(){
+		getAllSettings();
 		getPlugins("#plugins");
 	});
 </script>
-<div id="main">
-	<div id="container" >
+<div id="container">
+	<div id="main" >
 		<h1>Settings</h1>
+		<hr>
 		<div class="panel panel-info ">
-			
-			<p>Da qui puoi configurare tutti i settaggi del mondo!</p>
-			<p>Qui la lista dei plugin disponibili su questo sistema:</p>
-			<ul id="plugins"></ul>
+			<ul class="nav nav-tabs nav-justified tab-list">
+			  <li role="presentation" class="active"><a href="#general" aria-controls="general" data-toggle="tab">General</a></li>
+			  <li role="presentation"><a href="#plugin" aria-controls="plugin" data-toggle="tab">Plugin</a></li>
+			</ul>
+			<div class="tab-content content-list">
+				<div role="tabpanel" class="tab-pane active" id="general">
+					<p>Da qui puoi configurare tutti i settaggi del mondo!</p>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="plugin">
+					<p>Qui la lista dei plugin disponibili su questo sistema:</p>
+					<ul id="plugins"></ul>
+				</div>
+			</div>
+					
 		</div>
 	</div>
 </div>

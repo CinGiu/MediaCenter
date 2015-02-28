@@ -7,7 +7,9 @@
 		]);
 		return $database;
 	}
-	
+	/*
+	 * 	USER QUERY
+	 * */
 	function getId(){
 		$name=$_COOKIE["CinelliHomeUN"];
 		return getIdFromUser($name)[0]['id'];
@@ -50,7 +52,7 @@
 			"AND" => [
 				"name" => $name,
 				"pswd" => $pswd
-			]
+			] 
 		]);
 		return $result;
 	}
@@ -63,7 +65,56 @@
 			return false;
 		}	
 	}
-	
+	/*
+	 * 	SETTINGS QUERY
+	 * */
+	function getAllSettings(){
+		$database=connect();
+		$idUser=getId();	
+		$res=$database->select("settings",
+			[			
+				"settings.id",
+				"settings.idUser",
+				"settings.key",
+				"settings.value"
+			],[
+				"idUser" => $idUser
+			]);
+		return $res;
+	} 
+	function getSetting($key){
+		$database=connect();
+		$idUser=getId();	
+		$res=$database->select("settings",
+			[			
+				"settings.value"
+			],[
+				"AND" =>[
+					"idUser" => $idUser,
+					"key" => $key
+				]
+			]);
+		return $res;
+	} 
+	function updateSetting($key,$value){
+		$database=connect();
+		$idUser=getId();
+		$database->update("settings",
+			[
+				"value"=>$value
+			],
+			[
+				"AND"=>
+				[
+					"key"=>$key,
+					"idUser"=>$idUser
+				]
+			]
+		);
+	}
+	/*
+	 * 	PLUGINS QUERY
+	 * */
 	function getPlugins(){
 		$database=connect();
 		$idUser=getId();
@@ -83,7 +134,7 @@
 				[
 					"AND"=>[
 						"idPlugin"=>$plugin['id'],
-						"IdUser"=>$idUser
+						"IdUser"=>$idUser 
 					]
 				]);
 			$plugin['isActive']=$t[0]['id'];
@@ -94,7 +145,7 @@
 		$database=connect();
 		$res=$database->insert("plugin",[		
 			"name"=>$name,
-			"developer"=>$developer,
+			"developer"=>$developer, 
 			"folder"=>$folder
 		]);
 		return $res;
@@ -119,4 +170,6 @@
 		]);
 		return $res;
 	}
+	
+
 ?>

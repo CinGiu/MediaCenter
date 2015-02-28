@@ -3,13 +3,10 @@
  * prende: Tipo di richiesta (GET, POST), destinazione (file.php), eventuale Data da mandare
  * restituisce: il risultato del server (non trattato)
  * */
- var arrayfilm = new Array();
+var arrayfilm = new Array();
 $(document).ready(function(){  
 	
 	InitLogin();
-	
-	
-	
 	$( "#pass" ).keyup(function(key)
 			{
 				var n_key=key.which;
