@@ -3,6 +3,6 @@
  * */
 
 var hostName="JARVIS"
-var tranmissionPort="4545";
-var folderName=["recenti","a-z","serie","musica"];
-var folderPath=["TORRENT","TORRENT","SERIE","MUSICA"];
+var tranmissionPort="9091";
+var folderName=["recenti","a-z","serie","musica","book","anime"];
+var folderPath=["TORRENT","TORRENT","SERIE","MUSICA","BOOKS","ANIME"];

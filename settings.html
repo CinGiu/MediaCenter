@@ -1,7 +1,44 @@
+<html>
+<head>
+	<title>Jarvis</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!--
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+-->
+	
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/stile.css" id="style"/>
+	<link rel="stylesheet" type="text/css" href="css/filmListStyle.css" id="style"/>
+	<link rel="stylesheet" type="text/css" href="css/preview.css" id="style"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.min" id="style"/>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+
+<script src="js/options.js" type="text/javascript"></script>
+<script>
+	$(document).ready(function(){
+		getPlugins("#plugins");
+	});
+</script>
 <div id="main">
-	<h1>Settings</h1>
-	<div class="panel panel-info ">
-		
-		<p>Da qui puoi configurare tutti i settaggi del mondo!</p>
+	<div id="container" >
+		<h1>Settings</h1>
+		<div class="panel panel-info ">
+			
+			<p>Da qui puoi configurare tutti i settaggi del mondo!</p>
+			<p>Qui la lista dei plugin disponibili su questo sistema:</p>
+			<ul id="plugins"></ul>
+		</div>
 	</div>
 </div>
+</html>

@@ -41,7 +41,8 @@ $(document).ready(function(){
 		});	
 		
 	$(".settings").live("click",function(){
-		 $("#container").load("settings.html");
+		 location.href="settings.html"
+		 //$("#container").load("settings.html");
 	});	
 	$(".home").live("click",function(){
 		 $("#container").load("home.html");

@@ -9,7 +9,7 @@
 	}
 	
 	function getId(){
-		$name=$_COOKIE["name"];
+		$name=$_COOKIE["CinelliHomeUN"];
 		return getIdFromUser($name)[0]['id'];
 	}
 	function getIdFromUser($name){
@@ -62,5 +62,61 @@
 		}else{
 			return false;
 		}	
+	}
+	
+	function getPlugins(){
+		$database=connect();
+		$idUser=getId();
+		$res=$database->select("plugin",
+			[			
+				"plugin.id",
+				"plugin.name",
+				"plugin.developer",
+				"plugin.folder"
+		],[
+		]);
+		foreach($res as &$plugin){
+			$t=$database->select("activeplugin",
+				[
+					"id"
+				],
+				[
+					"AND"=>[
+						"idPlugin"=>$plugin['id'],
+						"IdUser"=>$idUser
+					]
+				]);
+			$plugin['isActive']=$t[0]['id'];
+		}
+		return $res;
+	}
+	function insertPlugin($name,$developer,$folder){
+		$database=connect();
+		$res=$database->insert("plugin",[		
+			"name"=>$name,
+			"developer"=>$developer,
+			"folder"=>$folder
+		]);
+		return $res;
+	}
+	function turnOnPlugin($idPlugin){
+		$database=connect();
+		$idUser=getId();
+		$res=$database->insert("activeplugin",[
+			"idUser"=>$idUser,
+			"idPlugin"=>$idPlugin
+		]);
+		return $res;
+	}
+	function turnOffPlugin($idPlugin){
+		$database=connect();
+		$idUser=getId();
+		$res=$database->delete("activeplugin",[		
+				"AND" => [
+					"idUser"=>$idUser,
+					"idPlugin"=>$idPlugin
+				]
+		]);
+		return $res;
 	}
 ?>
