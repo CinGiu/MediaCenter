@@ -1,2 +1,6 @@
 CREATE TABLE user (id INTEGER PRIMARY KEY,name TEXT  UNIQUE, email TEXT UNIQUE,pswd TEXT);
+CREATE TABLE settings (id INTEGER PRIMARY KEY,idUser INTEGER, key TEXT, value TEXT);
+CREATE TABLE plugin (id INTEGER PRIMARY KEY, name TEXT, developer TEXT, folder TEXT);
+CREATE TABLE activeplugin (id INTEGER PRIMARY KEY, idPlugin INTEGER, idUser INTEGER);
+
 INSERT INTO user (name,email,pswd) VALUES ('username','email','sha1(password)');
