@@ -8,7 +8,7 @@
 		return $database;
 	}
 	/*
-	 * 	USER QUERY
+	 * 	USER QUERY 
 	 * */
 	function getId(){
 		$name=$_COOKIE["CinelliHomeUN"];
@@ -73,8 +73,6 @@
 		$idUser=getId();	
 		$res=$database->select("settings",
 			[			
-				"settings.id",
-				"settings.idUser",
 				"settings.key",
 				"settings.value"
 			],[
@@ -111,6 +109,7 @@
 				]
 			]
 		);
+		var_dump($database->error());
 	}
 	/*
 	 * 	PLUGINS QUERY

@@ -3,6 +3,33 @@
  * */
 
 var hostName="JARVIS"
-var tranmissionPort="9091";
-var folderName=["recenti","a-z","serie","musica","book","anime"];
-var folderPath=["TORRENT","TORRENT","SERIE","MUSICA","BOOKS","ANIME"];
+var tranmissionPort;
+var folderName;
+var folderPath;
+
+$(document).ready(function(){ 
+	
+	$.get('php/getAllSettings.php',function(data){
+		var js=JSON.parse(data);
+		
+		for(i=0;i< js.length;i++){
+			var s = js[i];
+			switch(s.key){
+				case "folderName":
+					folderName=s.value.split(",");
+					break;
+				case "folderPath":
+					folderPath=s.value.split(",");
+					break;
+				case "transmissionPort":
+					tranmissionPort=s.value
+					break;
+				case "backgroundImage":
+					$("body").css("background-image",'url("'+s.value+'")');
+					break;
+			}
+		}
+	});
+	
+});
+

@@ -7,8 +7,6 @@ h2{
 	text-align:center;
 }
 body{
-
-	background-image:url("images/bgironman.jpg");
 	height: 100%;
 	font-family: Verdana, Geneva,sans-serif;
 	background-attachment: fixed;
@@ -134,6 +132,18 @@ iframe{
 }
 .cliccable:hover{
 	cursor:pointer;
+}
+.alert{
+	position:fixed;
+	top:0;
+	width:100%;
+	text-align:center;
+}
+.input-group{
+	margin-bottom: 20px;
+}
+.panel-body{
+	text-align:center;
 }
 @media only screen and (max-width: 767px) {
 	
