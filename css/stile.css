@@ -142,7 +142,7 @@ iframe{
 .input-group{
 	margin-bottom: 20px;
 }
-.panel-body{
+.basic{
 	text-align:center;
 }
 @media only screen and (max-width: 767px) {
