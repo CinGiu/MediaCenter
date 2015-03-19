@@ -96,19 +96,40 @@ function LoadHome(){
 }
 
 function MakeHome(){
-	
-	for (var i=0; i < folderName.length; i++){
-		tab = folderName[i];
-		if(i == 0){
-			var active="active"; 
-		}else{
-			var active = "";
-		}
+	$.get('php/getAllSettings.php',function(data){
+		var js=JSON.parse(data);
 		
-		$(".tab-list").append('<li role="navigation" onclick="reset_list()" class="'+active+'"><a href="#'+tab.replace("-","")+'" aria-controls="'+tab.replace("-","")+'" role="tab" data-toggle="tab">'+Title(tab)+'</a></li>');
-		$(".content-list").append('<div role="tabpanel" class="tab-pane '+active+'" id="'+tab.replace("-","")+'"><ul class="list-group list-'+tab.replace("-","")+'" id="list-'+tab.replace("-","")+'"></ul></div>');
-		TakeFilmList(tab.replace("-",""),folderPath[i]);
-	}	
+		for(i=0;i< js.length;i++){
+			var s = js[i];
+			switch(s.key){
+				case "folderName":
+					folderName=s.value.split(",");
+					break;
+				case "folderPath":
+					folderPath=s.value.split(",");
+					break;
+				case "transmissionPort":
+					tranmissionPort=s.value
+					break;
+				case "backgroundImage":
+					$("body").css("background-image",'url("'+s.value+'")');
+					break;
+			}
+		}
+	
+		for (var i=0; i < folderName.length; i++){
+			tab = folderName[i];
+			if(i == 0){
+				var active="active"; 
+			}else{
+				var active = "";
+			}
+		
+			$(".tab-list").append('<li role="navigation" onclick="reset_list()" class="'+active+'"><a href="#'+tab.replace("-","")+'" aria-controls="'+tab.replace("-","")+'" role="tab" data-toggle="tab">'+Title(tab)+'</a></li>');
+			$(".content-list").append('<div role="tabpanel" class="tab-pane '+active+'" id="'+tab.replace("-","")+'"><ul class="list-group list-'+tab.replace("-","")+'" id="list-'+tab.replace("-","")+'"></ul></div>');
+			TakeFilmList(tab.replace("-",""),folderPath[i]);
+		}
+	});	
 }
 
 function TakeFilmList(type,folder){
