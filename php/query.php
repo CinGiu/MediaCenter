@@ -93,6 +93,17 @@
 				]
 			]);
 		return $res;
+	}
+	function insertSetting($idUser,$key, $value){
+		$database=connect();
+		$res=$database->insert("settings",
+			[
+				"value"=>$value,
+				"key"=>$key,
+				"idUser"=>$idUser
+			]
+		);
+		return $res;
 	} 
 	function updateSetting($key,$value){
 		$database=connect();

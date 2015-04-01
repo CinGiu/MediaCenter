@@ -110,6 +110,13 @@ function MakeHome(){
 					break;
 				case "transmissionPort":
 					tranmissionPort=s.value
+					$("#info").hide();
+					var t=$("#info").text();
+					//var ip_server=t.substring(t.indexOf(":")+1,t.indexOf("IPv4 only Test"));					
+					var ip_server= document.location.href;
+					ip_server=ip_server.split('/')[2];
+					$("#transmissionx").attr("src","http://"+ip_server+":"+tranmissionPort+"/transmission/web/");
+					
 					break;
 				case "backgroundImage":
 					$("body").css("background-image",'url("'+s.value+'")');
