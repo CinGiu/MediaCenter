@@ -40,6 +40,17 @@ $(document).ready(function(){
 	$(".settings").live("click",function(){
 		 location.href="settings.html"
 		 //$("#container").load("settings.html");
+	});
+	$(".logout").live("click",function(){
+		$.get("php/logout.php",function(data){
+			if(data=="200"){
+				setCookie("CinelliHomeUN", "", -1);
+				setCookie("CinelliHomePD", "", -1);
+				location.href="index.html"
+			}else{
+				alert("logout fallito");
+			}
+		});
 	});	
 	$(".home").live("click",function(){
 		 $("#container").load("home.html");

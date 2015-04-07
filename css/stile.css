@@ -126,9 +126,11 @@ iframe{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
-.settings{
+.utility{
 	float:right;
+}
+.utility button{
+	margin-left:2px;
 }
 .cliccable:hover{
 	cursor:pointer;
