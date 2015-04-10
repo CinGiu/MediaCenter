@@ -33,10 +33,21 @@
 	$(document).ready(function(){
 		getAllSettings();
 		getPlugins("#plugins");
+		$(".home").click(function(){
+			location.href="index.html";
+		});
 	});
 </script>
 <div id="container">
 	<div id="main" >
+		<div class="utility">
+			<button type="button" class="btn btn-default btn-sm logout">
+				<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="btn btn-default btn-sm home">
+				<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+			</button>
+		</div>
 		<h1>Settings</h1>
 		<hr>
 		<div class="panel panel-info ">
