@@ -10,7 +10,8 @@ body{
 	height: 100%;
 	font-family: Verdana, Geneva,sans-serif;
 	background-attachment: fixed;
-	background-position: right -562px top;
+	//background-position: right -562px top;
+	background-size: cover;
 	background-repeat: no-repeat;
 }
 #main{

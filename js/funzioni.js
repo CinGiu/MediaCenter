@@ -147,6 +147,16 @@ function MakeHome(){
 			$(".content-list").append('<div role="tabpanel" class="tab-pane '+active+'" id="'+tab.replace("-","")+'"><ul class="list-group list-'+tab.replace("-","")+'" id="list-'+tab.replace("-","")+'"></ul></div>');
 			TakeFilmList(tab.replace("-",""),folderPath[i]);
 		}
+		
+		$.get("php/getPlugins.php",function(data){
+			var js=JSON.parse(data);
+			for(var i=0;i<js.length;i++){
+				if(js[i].isActive!=null){
+					$("#main").append('<div id="plugin'+js[i].id+'"class="panel panel-info"></div>');
+					$('#plugin'+js[i].id).load(js[i].folder+"/index.html");
+				}
+			}
+		});
 	});	
 }
 
